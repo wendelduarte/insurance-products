@@ -2,11 +2,14 @@ package com.insurance.products.archunit;
 
 import static com.tngtech.archunit.library.Architectures.layeredArchitecture;
 
+import com.tngtech.archunit.core.importer.ImportOption;
 import com.tngtech.archunit.junit.AnalyzeClasses;
 import com.tngtech.archunit.junit.ArchTest;
 import com.tngtech.archunit.lang.ArchRule;
 
-@AnalyzeClasses(packages = "com.insurance.products")
+@AnalyzeClasses(packages = "com.insurance.products", importOptions = {
+		ImportOption.DoNotIncludeTests.class
+})
 public class LayerArchitectureTest {
 
 	private static final String CORE_LAYER_PACKAGES = "com.insurance.products.core..";
