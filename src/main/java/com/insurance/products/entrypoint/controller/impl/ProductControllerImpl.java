@@ -8,7 +8,9 @@ import com.insurance.products.entrypoint.dto.request.ProductRequestDto;
 import com.insurance.products.entrypoint.dto.response.ProductResponseDto;
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
+@Slf4j
 @RestController
 @RequiredArgsConstructor
 public class ProductControllerImpl implements ProductController {
@@ -17,13 +19,16 @@ public class ProductControllerImpl implements ProductController {
 
 	@Override
 	public ProductResponseDto upsertProduct(ProductRequestDto product) {
+		log.info("Received product to upsert: {}", product);
 		var productToResponse = upsertProductUseCase.execute(product.toDomain());
-		return new ProductResponseDto(
+		var productResponse = new ProductResponseDto(
 				productToResponse.id(),
 				productToResponse.name(),
 				productToResponse.category().name(),
 				productToResponse.baseAmount(),
 				productToResponse.amountWithTax()
 		);
+		log.info("Finish to process product upsert product to return: {}", productResponse);
+		return productResponse;
 	}
 }

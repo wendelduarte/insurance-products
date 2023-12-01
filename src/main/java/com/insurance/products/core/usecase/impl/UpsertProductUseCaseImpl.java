@@ -8,7 +8,9 @@ import com.insurance.products.core.gateway.database.ProductGateway;
 import com.insurance.products.core.usecase.UpsertProductUseCase;
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
+@Slf4j
 @Service
 @RequiredArgsConstructor
 public class UpsertProductUseCaseImpl implements UpsertProductUseCase {
@@ -17,6 +19,11 @@ public class UpsertProductUseCaseImpl implements UpsertProductUseCase {
 	
 	@Override
 	public ProductDomain execute(ProductToUpsert product) {
-		return productGateway.upsert(new ProductDomain(product.name(), product.category(), product.baseAmount()));
+		log.info("Processing upsert product for name=[{}] and category=[{}]", product.name(), product.category());
+		return productGateway.upsert(new ProductDomain(
+				product.name(), 
+				product.category(), 
+				product.baseAmount())
+		);
 	}
 }

@@ -46,4 +46,24 @@ public class BuildTestUtils {
 	public static ProductEntity buildProductEntity() {
 		return new ProductEntity(ID, PRODUCT_NAME, VIDA.name(), BASE_AMOUNT, AMOUNT_WITH_TAX);
 	}
+	
+	public static String getInsuranceAutoRequest() {
+		return """
+				{
+					"nome": "Seguro Auto Individual",
+					"categoria": "AUTO",
+					"preco_base": 50.00
+				}
+				""";
+	}
+	
+	public static String getInsuranceVidaRequest() {
+		return """
+				{
+					"nome": "Seguro de Vida Individual",
+					"categoria": "VIDA",
+					"preco_base": 100.00
+				}
+				""";
+	}
 }

@@ -14,4 +14,11 @@ public record ProductRequestDto(
 	public ProductToUpsert toDomain() {
 		return new ProductToUpsert(name, category, baseAmount);
 	}
+
+	@Override
+	public String toString() {
+		return "ProductRequestDto [name=" + name + ", category=" + category + ", baseAmount=" + baseAmount + "]";
+	}
+	
+	
 }

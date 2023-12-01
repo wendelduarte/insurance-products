@@ -12,4 +12,9 @@ public record ProductResponseDto(
 		@JsonProperty("preco_tarifado") BigDecimal amountWithTax		
 ) {
 
+	@Override
+	public String toString() {
+		return "ProductResponseDto [id=" + id + ", name=" + name + ", category=" + category + ", baseAmount="
+				+ baseAmount + ", amountWithTax=" + amountWithTax + "]";
+	}
 }
