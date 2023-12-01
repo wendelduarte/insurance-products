@@ -33,7 +33,7 @@ Nesse sistema existem três camadas: **entrypoint**, **dataprovider**, **core**,
 
 Sendo assim, temos uma arquitetura conforme a imagem abaixo:
 <p align="center">
-<img src="docs/images/arch.png" alt="arch" width="850" height="500"/>
+<img src="doc/images/arch.png" alt="arch" width="850" height="500"/>
 </p>
 Existem algumas formas de lidar com diferentes camadas, como criar projetos multi-módulos, por exemplo, o que garantiria que as regras de acessos entre camadas não fossem quebradas, uma vez que seria necessário adicionar as camadas como dependência nos módulos. Para simplificar, neste projeto foi utilizado apenas um módulo e para garantir que não haja quebra no acesso entre as camadas foi criado [esse](https://github.com/wendelduarte/insurance-products/blob/main/src/test/java/com/insurance/products/archunit/LayerArchitectureTest.java) teste de arquitetura.
 
@@ -41,10 +41,10 @@ Existem algumas formas de lidar com diferentes camadas, como criar projetos mult
 Uma vez que esse sistema não está sendo projetado para uma grande quantidade de dados, possui uma estrura bem definida do seu domínio, foi optado por se utilizar um banco de dado SQL, no caso o MySQL.
 O banco possui apenas uma tabela, conforme abaixo:
 <p align="center">
-<img src="docs/images/db.png" alt="db" width="850" height="500"/>
+<img src="doc/images/db.png" alt="db" width="850" height="500"/>
 </p>
 ### <a name="fluxo">Fluxo</a>
 O fluxo presente nesse sistema é bastante simples e pode ser identificado através do diagrama abaixo:
 <p align="center">
-<img src="docs/images/flow.png" alt="flow" width="850" height="500"/>
+<img src="doc/images/flow.png" alt="flow" width="850" height="500"/>
 </p>
