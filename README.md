@@ -1,10 +1,10 @@
 # Produtos de seguro
 ## Índice
 * [Stack](#stack)
-* [Configuração](#configuracao)
-    * [Debug (IDE)](#debug_ide)
+* [Rodar o projeto](#rodar_projeto)
     * [Docker](#docker)
-* [Arquitetura Limpa](#arquitetura)
+    * [Debug (IDE)](#debug_ide)
+    * [Testes](#testes)* [Arquitetura Limpa](#arquitetura)
     * [Projeto](#arquitetura_projeto)
 * [Banco de dados](#banco_de_dados)
 * [Fluxo](#fluxo)
@@ -16,9 +16,48 @@
 - Spring 3.2.0
 - MySQL 8.0.33
 - REST API
-### <a name="configuracao">Configuração</a>
-### <a name="debug_ide">Debug IDE</a>
+- Jacoco
+
+### <a name="rodar_projeto">Rodar o projeto</a>
+
 ### <a name="docker">Docker</a>
+Necessário ter o docker e docker-compose instalados. 
+
+- Necessário certificar-se que o campo `pring.datasource.url` do arquivo `application.properties` está configurado conforme abaixo:
+
+```
+spring.datasource.url=${SPRING_DATASOURCE_URL}
+```
+
+Rodar os comandos abaixo:
+
+```
+docker compose build
+docker compose up
+```
+
+### <a name="debug_ide">Debug IDE</a>
+- Aqui é necessário que tenha todas as ferramentas mencionadas em "[Stack](#stack)" e que estejam rodando.
+- Necessário certificar-se que o campo `pring.datasource.url` do arquivo `application.properties` está configurado conforme abaixo:
+
+```
+spring.datasource.url=jdbc:mysql://localhost:3306/insurance_products?createDatabaseIfNotExist=true&Timezone=UTC]
+```
+
+Importar o projeto na sua IDE de preferência e rodar a classe `InsuranceProductsApplication.java`
+
+Dica: Você pode utilizar [esta](https://hub.docker.com/layers/library/mysql/8.0.33/images/sha256-b45a7c3e6fb15526e8bf62ebb940cd460617e36f46155b8514fd9c9388231817?context=explore) imagem docker para o mysql.
+
+### <a name="teste">Testes</a>
+Para verificar a cobertura de testes, rode o comando abaixo (com maven instalado):
+
+```
+mvn clean install
+```
+
+Após a execeção desse comando será criada uma pasta chamada `target` na raiz do projeto. 
+Dentro dessa pasta acesse: `./site/jacoco/index.html`
+
 ### <a name="arquitetura">Arquitetura Limpa</a>
 Este projeto está baseado em Arquitetura Limpa. A ideia dessa aquitetura é fazer com que cada parte do código fique desacoplada, de forma que camadas de entrada ou de busca de informações não acessem o _core_ do sistema, Essa forma de configuração facilita a manutenção do sistema, uma vez que o sistema está mais desacoplado.
 Esse desacoplamento se da através da inversão de dependência, fazendo com que seja possível a comunicação entre camadas porém, sem acessa-lás diretamente. Dessa forma nossa camada principal do sistema pode depender apenas de contratos e qualquer um que cumpra esses contratos pode se comunicar com a camada principal do sistema, o que facilita muito a troca de um banco de dados, por exemplo.

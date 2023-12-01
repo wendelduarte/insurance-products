@@ -1,0 +1,29 @@
+version: "2.4"
+
+services:
+        database:
+                image: mysql:8.0.33 
+                restart: always
+                volumes:
+                        - mysql_data:/var/lib/mysql
+                ports:
+                        - "3306:3306"
+                environment:
+                        MYSQL_ROOT_PASSWORD: 'root'
+                healthcheck:
+                        test: ["CMD", "mysqladmin" ,"ping", "-h", "localhost"]
+                        timeout: 20s
+                        retries: 10
+        insurance-products:
+                build:
+                        context: .
+                        dockerfile: Dockerfile
+                entrypoint: ["java", "-jar", "/usr/local/lib/products/*.jar"]
+                ports:
+                        - "8080:8080"
+                environment:
+                        - SPRING_DATASOURCE_URL=jdbc:mysql://database:3306/insurance_products?createDatabaseIfNotExist=true&Timezone=UTC]
+                depends_on:
+                        - database
+volumes:
+        mysql_data:
