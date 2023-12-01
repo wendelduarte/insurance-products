@@ -43,6 +43,7 @@ O banco possui apenas uma tabela, conforme abaixo:
 <p align="center">
 <img src="doc/images/db.png" alt="db" width="850" height="500"/>
 </p>
+
 ### <a name="fluxo">Fluxo</a>
 O fluxo presente nesse sistema é bastante simples e pode ser identificado através do diagrama abaixo:
 <p align="center">
